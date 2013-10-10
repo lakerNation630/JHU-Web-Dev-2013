@@ -13,12 +13,5 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-  <!-- This listener starts up the H2 database -->
-<!--   <listener> -->
-<!--     <listener-class>org.h2.server.web.DbStarter</listener-class> -->
-<!--   </listener> -->
   
-<!--   <listener> -->
-<!--     <listener-class>jhu.web.java.servlets.TestServletContextListener</listener-class> -->
-<!--   </listener>	 -->
 </web-app>
