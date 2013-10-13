@@ -13,17 +13,21 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name="User.findAll",query="Select u from User u")
+	@NamedQuery(name="User.findAll",query="Select u from User u"),
+	@NamedQuery(name="User.findByUsername",query="Select u from User u Where u.username = :username")
 })
 public class User {
 
 	private String address;
 	private String firstName;
-	private String lastName;
-	private String zipCode;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	private String lastName;
+	private String password;
+	/** The registered username of the user within the system*/
+	private String username;
+	private String zipCode;
 	
 	public String getAddress() {
 		return address;
@@ -36,6 +40,13 @@ public class User {
 	}
 	public String getLastName() {
 		return lastName;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public String getUsername() {
+		return username;
 	}
 	public String getZipCode() {
 		return zipCode;
@@ -51,6 +62,12 @@ public class User {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
