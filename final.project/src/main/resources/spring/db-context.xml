@@ -22,21 +22,34 @@
 		<property name="persistenceUnitName" value="h2" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-			<property name="showSql" value="false" />
-			<property name="generateDdl" value="true" />
-			<property name="databasePlatform" value="org.hibernate.dialect.H2Dialect" />
+<!-- 				<property name="showSql" value="false" /> -->
+<!-- 				<property name="generateDdl" value="false" /> -->
+<!-- 				<property name="databasePlatform" value="org.hibernate.dialect.H2Dialect" /> -->
 			</bean>
 		</property>
+		<property name="jpaProperties">
+	        <props>
+	        	<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+	        	<prop key="hibernate.show_sql">true</prop>
+	            <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+	        </props>
+	    </property>
 	</bean>
      
-<!--      <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource" > -->
-<!-- 	  <property name="driverClass" value="org.h2.Driver" /> -->
-<!-- 	  <property name="url" value="jdbc:h2:/tmp/db/test;FILE_LOCK=SOCKET" /> -->
-<!-- 	</bean> -->
-	<jdbc:embedded-database type="H2" id="dataSource">
+     <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource" >
+	  <property name="driverClass" value="org.h2.Driver" />
+	  <property name="url" value="jdbc:h2:mem:test;INIT=CREATE SCHEMA IF NOT EXISTS test;DB_CLOSE_DELAY=-1" />
+	</bean>
+<!-- 	<jdbc:embedded-database type="H2" id="dataSource"> -->
 <!-- 		<jdbc:script location="classpath:schema.sql"/> -->
-	</jdbc:embedded-database>
+<!-- 	</jdbc:embedded-database> -->
 	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 	  <property name="entityManagerFactory" ref="myEmf"/>
+	</bean>
+	
+	<bean id="sharedTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+	  <property name="isolationLevelName" value="ISOLATION_DEFAULT"/>
+	  <property name="transactionManager" ref="txManager"/>
+	  <property name="timeout" value="30"/>
 	</bean>
 </beans>

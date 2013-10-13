@@ -12,7 +12,8 @@
      http://www.springframework.org/schema/context/spring-context-3.2.xsd">
      
      <context:annotation-config/>
+     <context:component-scan base-package="jhu.web.java.dao"/>
      <import resource="db-context.xml"/>
      
-     <bean id="dbInit" class="jhu.web.java.beans.DataBaseInitializer" init-method="loadDatabase"/>
+     <bean id="dbInit" class="jhu.web.java.beans.DataBaseInitializer"/>
 </beans>

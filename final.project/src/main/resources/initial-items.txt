@@ -1,1 +1,2 @@
-Ravens Jersey,This is an offical Ravens Jersey,100.00
+#Item Name | Item Description | Price | Amount in Inventory
+Ravens Jersey,This is an offical Ravens Jersey,100.00,4
